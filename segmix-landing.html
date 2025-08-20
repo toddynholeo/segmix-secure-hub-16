@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segmix - Tecnologia que protege o que mais importa</title>
+    <meta name="description" content="Segurança, tecnologia e economia para condomínios e empresas. Portaria remota, controle de acesso, CFTV e alarme monitorado.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #004282;
+            --cta: #f58634;
+            --background: #ffffff;
+            --foreground: #1a1a1a;
+            --muted: #f8f9fa;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 66, 130, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            height: 3rem;
+            width: auto;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .btn-cta {
+            background: var(--cta);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background: #e67426;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 134, 52, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), #003366);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('src/assets/hero-security.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: var(--cta);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .hero-service-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .hero-service-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: var(--muted);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .service-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .service-item {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 66, 130, 0.1);
+        }
+
+        .service-icon {
+            width: 5rem;
+            height: 5rem;
+            background: linear-gradient(135deg, rgba(0, 66, 130, 0.1), rgba(245, 134, 52, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Service Grid Layout */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 66, 130, 0.15);
+        }
+
+        .service-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 66, 130, 0.2), transparent);
+        }
+
+        .service-icon-overlay {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+        }
+
+        .service-card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .service-card-content h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card-content p {
+            color: #666;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 5rem 0;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 5rem;
+            height: 5rem;
+            background: var(--cta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cta);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        /* Clients Section */
+        .clients {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .client-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .client-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .client-card img:hover {
+            filter: grayscale(0%);
+        }
+
+        .client-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .client-line {
+            width: 3rem;
+            height: 0.25rem;
+            background: var(--cta);
+            margin: 0 auto;
+            border-radius: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--cta);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 3rem;
+            width: auto;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        /* Form styles */
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .property-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .property-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .property-option:hover {
+            background: var(--muted);
+            border-color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-info {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="/lovable-uploads/9e6022c6-68fc-47f9-92a9-9050fe5a9039.png" alt="Segmix Tecnologia" class="logo">
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>Fale com um especialista</span>
+                    </div>
+                    <div class="contact-item">
+                        📞 (21) 3276-5670
+                    </div>
+                    <div class="contact-item">
+                        💬 (21) 99658-6152
+                    </div>
+                </div>
+
+                <button class="btn-cta" onclick="openModal()">SOLICITE UM ORÇAMENTO</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tecnologia que protege o que <span class="highlight">mais importa</span></h1>
+                <p>Segurança, tecnologia e economia para condomínios e empresas</p>
+                <button class="btn-cta" onclick="openModal()" style="font-size: 1.125rem; padding: 1rem 2rem;">SOLICITE UM ORÇAMENTO</button>
+                
+                <div class="hero-services">
+                    <div class="hero-service-card">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🛡️</div>
+                        <p>Portaria Remota</p>
+                    </div>
+                    <div class="hero-service-card">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔑</div>
+                        <p>Controle de Acesso</p>
+                    </div>
+                    <div class="hero-service-card">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">👁️</div>
+                        <p>Monitoramento CFTV</p>
+                    </div>
+                    <div class="hero-service-card">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚠️</div>
+                        <p>Alarme Monitorado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Conheça nossas soluções completas de segurança</h2>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="src/assets/portaria-remota.jpg" alt="Portaria Remota / Autônoma">
+                        <div class="service-overlay"></div>
+                        <div class="service-icon-overlay">
+                            <div style="background: rgba(255,255,255,0.9); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                                🛡️
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Portaria Remota / Autônoma</h3>
+                        <p>Reduza em até 60% os custos com portaria e aumente a segurança do seu condomínio com a nossa Portaria Remota ou Autônoma.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="src/assets/controle-acesso.jpg" alt="Controle de Acesso">
+                        <div class="service-overlay"></div>
+                        <div class="service-icon-overlay">
+                            <div style="background: rgba(255,255,255,0.9); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                                🔑
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Controle de Acesso</h3>
+                        <p>Gerencie e controle o fluxo de entrada e saída de pessoas e veículos do seu patrimônio com o nosso Controle de Acesso.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="src/assets/monitoramento-cftv.jpg" alt="Monitoramento CFTV">
+                        <div class="service-overlay"></div>
+                        <div class="service-icon-overlay">
+                            <div style="background: rgba(255,255,255,0.9); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                                👁️
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Monitoramento CFTV</h3>
+                        <p>Monitore em tempo real o que acontece no seu patrimônio de onde estiver com o nosso sistema de Monitoramento CFTV.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="src/assets/alarme-monitorado.jpg" alt="Alarme Monitorado">
+                        <div class="service-overlay"></div>
+                        <div class="service-icon-overlay">
+                            <div style="background: rgba(255,255,255,0.9); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                                ⚠️
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Alarme Monitorado</h3>
+                        <p>Proteja seu patrimônio com a nossa Central de Monitoramento 24h, pronta para atuar em qualquer sinal de invasão.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="src/assets/rastreador-veicular.jpg" alt="Rastreador Veicular">
+                        <div class="service-overlay"></div>
+                        <div class="service-icon-overlay">
+                            <div style="background: rgba(255,255,255,0.9); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                                📍
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Rastreador Veicular</h3>
+                        <p>Monitore seu carro, moto ou frota em tempo real com a nossa tecnologia de rastreamento via GPS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn-cta" onclick="openModal()" style="font-size: 1.125rem; padding: 1.5rem 3rem;">SOLICITE UM ORÇAMENTO GRATUITO</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Nossa Experiência</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <div style="font-size: 2rem;">📅</div>
+                    </div>
+                    <div class="stat-number">Mais de 10</div>
+                    <div class="stat-text">anos de mercado</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <div style="font-size: 2rem;">👥</div>
+                    </div>
+                    <div class="stat-number">Mais de 1.500</div>
+                    <div class="stat-text">clientes satisfeitos</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <div style="font-size: 2rem;">✅</div>
+                    </div>
+                    <div class="stat-number">Mais de 2.000</div>
+                    <div class="stat-text">projetos instalados</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients">
+        <div class="container">
+            <h2 class="section-title">Confira alguns dos nossos clientes</h2>
+            
+            <div class="clients-grid">
+                <div class="client-card">
+                    <img src="/lovable-uploads/61f973ee-7f39-499e-a8be-93d20dc54523.png" alt="Shopping Nova América" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/50fad9a1-cbd6-4b4a-b04a-3cefff33d79b.png" alt="Ciclus" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/519bb444-2aba-4392-9ea7-c02fadd0a68b.png" alt="Carvalho Hosken" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/f1446bcc-c4ee-4203-a2a7-82609431ae5e.png" alt="Florença" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/c9e52635-47d7-4855-ad5b-913119478380.png" alt="UFRJ" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/9d66c19d-fd64-405f-93a3-f6277706ccad.png" alt="Colégio Marista" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/644e3f50-382b-4dc7-9c2b-13f44c010099.png" alt="Record TV" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/b4d20cd9-a47d-4808-a702-fbd19728b547.png" alt="Mercury" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+                <div class="client-card">
+                    <img src="/lovable-uploads/81b564af-f00a-45bd-8827-83d8871c4893.png" alt="BRMalls" style="max-height: 4rem; max-width: 100%; object-fit: contain; filter: grayscale(100%); transition: all 0.3s ease;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="/lovable-uploads/9e6022c6-68fc-47f9-92a9-9050fe5a9039.png" alt="Segmix Tecnologia" style="height: 4rem; width: auto; margin-bottom: 1rem;">
+                    <p style="color: rgba(255, 255, 255, 0.8);">
+                        📍 R. José Bonifácio, 552 – segundo andar<br>
+                        Rio de Janeiro – RJ
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="mailto:sac@segmix.com.br">📧 sac@segmix.com.br</a>
+                    <a href="tel:2132765670">📞 (21) 3276-5670</a>
+                    <a href="https://wa.me/5521996586152">💬 (21) 99658-6152</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <a href="#">A Empresa</a>
+                    <a href="#">Nossos Serviços</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Trabalhe Conosco</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <img src="/lovable-uploads/9e6022c6-68fc-47f9-92a9-9050fe5a9039.png" alt="Segmix Tecnologia" class="footer-logo">
+                <p style="color: rgba(255, 255, 255, 0.7);">
+                    © 2024 Segmix. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--primary); text-align: center; margin-bottom: 2rem;">Solicitar Orçamento</h2>
+            
+            <!-- Progress bar -->
+            <div style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                <div style="display: flex; gap: 0.5rem;">
+                    <div class="progress-dot" style="width: 12px; height: 12px; border-radius: 50%; background: var(--cta);"></div>
+                    <div class="progress-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #ddd;"></div>
+                    <div class="progress-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #ddd;"></div>
+                    <div class="progress-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #ddd;"></div>
+                    <div class="progress-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #ddd;"></div>
+                </div>
+            </div>
+
+            <form id="quoteForm">
+                <!-- Step 1 -->
+                <div class="form-step active">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">Para qual tipo de imóvel você precisa de segurança?</h3>
+                    <div class="property-options">
+                        <div class="property-option" onclick="selectProperty('condominio')">
+                            <span style="font-size: 1.5rem;">🏢</span>
+                            <span style="font-size: 1.125rem;">Condomínio</span>
+                        </div>
+                        <div class="property-option" onclick="selectProperty('empresa')">
+                            <span style="font-size: 1.5rem;">🏭</span>
+                            <span style="font-size: 1.125rem;">Empresa</span>
+                        </div>
+                        <div class="property-option" onclick="selectProperty('residencia')">
+                            <span style="font-size: 1.5rem;">🏠</span>
+                            <span style="font-size: 1.125rem;">Residência</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="form-step">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">Qual o nome do seu <span id="propertyType">imóvel</span>? (Opcional)</h3>
+                    <input type="text" class="form-input" placeholder="Digite o nome..." id="companyName">
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="button" onclick="previousStep()" style="background: transparent; border: 1px solid var(--border); color: var(--foreground); padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer;">← Voltar</button>
+                        <button type="button" onclick="nextStep()" class="btn-cta">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="form-step">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">Por gentileza, qual o seu nome?</h3>
+                    <input type="text" class="form-input" placeholder="Digite seu nome completo..." id="userName" required>
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="button" onclick="previousStep()" style="background: transparent; border: 1px solid var(--border); color: var(--foreground); padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer;">← Voltar</button>
+                        <button type="button" onclick="nextStep()" class="btn-cta">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="form-step">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">Qual o seu melhor e-mail?</h3>
+                    <input type="email" class="form-input" placeholder="exemplo@email.com" id="userEmail" required>
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="button" onclick="previousStep()" style="background: transparent; border: 1px solid var(--border); color: var(--foreground); padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer;">← Voltar</button>
+                        <button type="button" onclick="nextStep()" class="btn-cta">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="form-step">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">Para concluir, qual o seu telefone com DDD?</h3>
+                    <input type="tel" class="form-input" placeholder="(21) 99999-9999" id="userPhone" required>
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="button" onclick="previousStep()" style="background: transparent; border: 1px solid var(--border); color: var(--foreground); padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer;">← Voltar</button>
+                        <button type="button" onclick="submitForm()" class="btn-cta" style="font-size: 1.125rem; padding: 1rem 2rem;">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let formData = {
+            propertyType: '',
+            companyName: '',
+            name: '',
+            email: '',
+            phone: ''
+        };
+
+        function openModal() {
+            document.getElementById('quoteModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('quoteModal').classList.remove('show');
+            currentStep = 1;
+            updateModal();
+        }
+
+        function selectProperty(type) {
+            formData.propertyType = type;
+            document.getElementById('propertyType').textContent = 
+                type === 'condominio' ? 'condomínio' : 
+                type === 'empresa' ? 'empresa' : 'residência';
+            nextStep();
+        }
+
+        function nextStep() {
+            if (currentStep < 5) {
+                currentStep++;
+                updateModal();
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateModal();
+            }
+        }
+
+        function updateModal() {
+            // Hide all steps
+            const steps = document.querySelectorAll('.form-step');
+            steps.forEach(step => step.classList.remove('active'));
+            
+            // Show current step
+            steps[currentStep - 1].classList.add('active');
+            
+            // Update progress dots
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                dot.style.background = index < currentStep ? 'var(--cta)' : '#ddd';
+            });
+        }
+
+        function submitForm() {
+            formData.companyName = document.getElementById('companyName').value;
+            formData.name = document.getElementById('userName').value;
+            formData.email = document.getElementById('userEmail').value;
+            formData.phone = document.getElementById('userPhone').value;
+
+            if (!formData.name || !formData.email || !formData.phone) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Here you would typically send the data to your backend
+            console.log('Form submitted:', formData);
+            
+            // Simulate form submission
+            alert('Orçamento solicitado! Entraremos em contato em breve.');
+            
+            // Redirect to thank you page (in a real scenario)
+            window.location.href = '#obrigado';
+            closeModal();
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            for (const link of links) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('quoteModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
