@@ -21,6 +21,9 @@ All colors MUST be HSL.
     --primary: 209 100% 26%; /* #004282 */
     --primary-foreground: 0 0% 100%;
     
+    /* Footer lighter blue for better logo contrast */
+    --footer-bg: 209 85% 35%; /* Lighter blue for footer */
+    
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 209 100% 26%;
 

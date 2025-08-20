@@ -59,6 +59,7 @@ export default {
 					DEFAULT: 'hsl(var(--cta))',
 					foreground: 'hsl(var(--cta-foreground))'
 				},
+				'footer-bg': 'hsl(var(--footer-bg))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
