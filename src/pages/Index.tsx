@@ -7,6 +7,7 @@ import { Experience } from "@/components/Experience";
 import { Clients } from "@/components/Clients";
 import { Footer } from "@/components/Footer";
 import { QuoteModal, QuoteFormData } from "@/components/QuoteModal";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -56,6 +57,8 @@ const Index = () => {
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleQuoteSubmit}
       />
+      
+      <WhatsAppButton />
     </div>
   );
 };
