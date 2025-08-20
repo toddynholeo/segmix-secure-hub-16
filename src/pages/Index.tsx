@@ -40,11 +40,23 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="p-8">
-        <h1 className="text-4xl font-bold text-blue-600 mb-4">Segmix - Teste</h1>
-        <p className="text-lg text-gray-700">Site carregando...</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header onCtaClick={handleCtaClick} />
+      
+      <main className="pt-16"> {/* Account for fixed header */}
+        <Hero onCtaClick={handleCtaClick} />
+        <Services />
+        <Experience />
+        <Clients />
+      </main>
+      
+      <Footer />
+      
+      <QuoteModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleQuoteSubmit}
+      />
       
       <WhatsAppButton />
     </div>
