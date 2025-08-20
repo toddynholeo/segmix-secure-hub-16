@@ -5,7 +5,7 @@ export const whatsappConfig = {
   
   // Webhook do Google Sheets (opcional)
   // Para configurar, siga as instruções no arquivo WEBHOOK-SETUP.md
-  webhookUrl: process.env.VITE_GOOGLE_SHEETS_WEBHOOK || "",
+  webhookUrl: import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "",
   
   // Email para receber notificações dos leads (opcional)
   notificationEmail: "contato@segmix.com.br",
